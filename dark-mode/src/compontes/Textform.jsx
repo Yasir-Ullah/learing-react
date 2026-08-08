@@ -1,32 +1,36 @@
 import React, { useEffect, useState } from "react";
 
 function TextForm(props) {
+  const handleChange = (event) => {
+    // console.log("onchsnge wer");
+
+    setText(event.target.value);
+  };
+
   const handlUpClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to UpperCase!", "success");
   };
+
   const handlLowClick = () => {
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Copied to Clipboard", "success");
   };
 
   const handlclearClick = () => {
     let newText = "";
 
     setText(newText);
-    alert("Text Cleared");
+    props.showAlert("Text clear", "success");
   };
 
   const handlCopyClick = () => {
     navigator.clipboard.writeText(text);
-    alert("Text Copied");
+    props.showAlert("copyied to clipborad", "success");
   };
 
-  const handleChange = (event) => {
-    // console.log("onchsnge wer");
-
-    setText(event.target.value);
-  };
   const [text, setText] = useState("");
 
   //   useEffect(() => {
